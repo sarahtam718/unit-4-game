@@ -1,5 +1,5 @@
 // document ready
-$(document).ready(function() {
+$(document).ready(function () {
   // console.log("ready!");
   //   everything nested in here
 
@@ -32,15 +32,15 @@ $(document).ready(function() {
 
   // number to guess (target random number) between 19-120
   //   make this a function so we can reset the game this time!!!
-  var randomizer = function() {
-    var targetRandomNumber = Math.floor(Math.random() * (120 - 19 + 1)) + 19;
+  var randomizer = function () {
+    targetRandomNumber = Math.floor(Math.random() * (120 - 19 + 1)) + 19;
     console.log("randomizer go: " + targetRandomNumber);
     $("#number-to-guess").html("Target: " + targetRandomNumber);
   };
 
   // assign each crystal random number between 1-12 x4 - also a function!
   //   include object?
-  var randomCrystal = function() {
+  var randomCrystal = function () {
     crystal.blue.value = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
     crystal.green.value = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
     crystal.orange.value = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
@@ -57,7 +57,7 @@ $(document).ready(function() {
   //   //   console.log(blue, orange, green, yellow);
 
   //   // to start the game
-  var begin = function() {
+  var begin = function () {
     userTotalScore = 0;
     randomizer();
     // crystalRandomizer(crystal.blue.value);
@@ -72,7 +72,7 @@ $(document).ready(function() {
   begin();
 
   //    click on individual crystal which will add to user input counter
-  $("#blue").on("click", function() {
+  $("#blue").on("click", function () {
     // console.log("BLUE!");
     // console.log(crystal.blue);
     // link addNum to object rather than "this," which is just the image
@@ -80,17 +80,17 @@ $(document).ready(function() {
     addNum(crystal.blue.value);
   });
 
-  $("#green").on("click", function() {
+  $("#green").on("click", function () {
     // console.log("GREEN!");
     addNum(crystal.green.value);
   });
 
-  $("#orange").on("click", function() {
+  $("#orange").on("click", function () {
     // console.log("ORANGE!");
     addNum(crystal.orange.value);
   });
 
-  $("#yellow").on("click", function() {
+  $("#yellow").on("click", function () {
     addNum(crystal.yellow.value);
     // console.log("YELLOW!");
   });
@@ -107,11 +107,13 @@ $(document).ready(function() {
 
   // console.log(userTotalScore);
 
+  // var newTarget = randomizer(targetRandomNumber);
+
   //   to win or lose...MORE functions!!! BUT something is terribly wrong with my scope regarding the updated target random number...it's local, and stuck inside the randomizer function...At least this way, everyone is a winner?
-  var winning = function() {
-    console.log("it's working " + userTotalScore + targetRandomNumber);
+  var winning = function () {
+    console.log("user total score ", userTotalScore + " target random number" + targetRandomNumber);
     // compare user current score to target
-    if (userTotalScore > targetRandomNumber) {
+    if (userTotalScore === targetRandomNumber) {
       console.log("you win");
       //   add one win to counter
       wins++;
@@ -120,7 +122,7 @@ $(document).ready(function() {
       //   // reset game to starting conditions
       begin();
       //   // if user score is under, then user still has a chance to win...
-    } else if (userTotalScore === targetRandomNumber) {
+    } else if (userTotalScore > targetRandomNumber) {
       console.log("you lose");
       //   //   add one loss to counter
       losses++;
